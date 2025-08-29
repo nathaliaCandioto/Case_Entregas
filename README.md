@@ -11,6 +11,6 @@ em construção
 
 # Tecnologias
 
-Java 21
-Spring Boot
-Maven
+- Java 21
+- Spring Boot
+- Maven
