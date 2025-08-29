@@ -20,8 +20,8 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<Pedido> insertProduto(@RequestBody Pedido pedido) {
-        Pedido pedido1 = pedidoService.insertPedido(pedido);
-        return ResponseEntity.ok(pedido1);
+        Pedido pedidoCriado = pedidoService.insertPedido(pedido);
+        return ResponseEntity.ok(pedidoCriado);
     }
 
     @GetMapping
@@ -30,7 +30,7 @@ public class PedidoController {
                                                          @RequestParam(value = "statusPedido", required = false) StatusPedidoEnum statusPedido,
                                                          @RequestParam(value = "prioridade", required = false) PrioridadePedidoEnum prioridadePedido) {
 
-        List<Pedido> pedidos = pedidoService.listingPedido(id, destino, statusPedido, prioridadePedido);
+        List<Pedido> pedidos = pedidoService.listPedido(id, destino, statusPedido, prioridadePedido);
         if (pedidos.isEmpty())
             return  ResponseEntity.notFound().build();
 

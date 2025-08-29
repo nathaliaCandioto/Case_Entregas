@@ -19,11 +19,11 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
-    public List<Pedido> listingPedido(Long id, String destino, StatusPedidoEnum statusPedido, PrioridadePedidoEnum prioridadePedido) {
+    public List<Pedido> listPedido(Long id, String destino, StatusPedidoEnum statusPedido, PrioridadePedidoEnum prioridadePedido) {
         return pedidoRepository.findByAttributes(id, destino, statusPedido, prioridadePedido);
     }
 
-    public void deletaPedido(Long id) {
+    public void deletePedido(Long id) {
       pedidoRepository.deleteById(id);
     }
 
