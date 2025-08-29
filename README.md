@@ -2,8 +2,8 @@
 
 # Como rodar
 
-# Clone o repositório
-Execute mvn spring-boot:run
+1. Clone o repositório
+2. Execute mvn spring-boot:run
 
 # Endpoints disponíveis
 
