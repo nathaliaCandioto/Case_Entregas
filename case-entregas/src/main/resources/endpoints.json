@@ -1,0 +1,182 @@
+{
+  "info": {
+    "name": "API Case Entregas",
+    "description": "Collection Postman com endpoints de Entrega, Drone e Pedido",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Entrega",
+      "item": [
+        {
+          "name": "Criar Entrega",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"codPedido\": 100, \"codDrone\": 1, \"prazo\": 2 }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/entrega",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["entrega"]
+            }
+          }
+        },
+        {
+          "name": "Listar Entregas com filtros",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/entrega?id=1&prazo=2&codPedido=100&codDrone=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["entrega"],
+              "query": [
+                { "key": "id", "value": "1" },
+                { "key": "prazo", "value": "2" },
+                { "key": "codPedido", "value": "100" },
+                { "key": "codDrone", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Excluir Entrega",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/entrega/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["entrega", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Drone",
+      "item": [
+        {
+          "name": "Criar Drone",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"codDrone\": 1, \"autonomiaVoo\": 120, \"statusDrone\": \"ATIVO\" }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/drone",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["drone"]
+            }
+          }
+        },
+        {
+          "name": "Listar Drones com filtros",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/drone?codDrone=1&autonomiaVoo=120&statusDrone=ATIVO",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["drone"],
+              "query": [
+                { "key": "codDrone", "value": "1" },
+                { "key": "autonomiaVoo", "value": "120" },
+                { "key": "statusDrone", "value": "ATIVO" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Excluir Drone",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/drone?codDrone=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["drone"],
+              "query": [
+                { "key": "codDrone", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedido",
+      "item": [
+        {
+          "name": "Criar Pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"destino\": \"Belo Horizonte\", \"statusPedido\": \"PENDENTE\", \"prioridade\": \"ALTA\" }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedido",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["pedido"]
+            }
+          }
+        },
+        {
+          "name": "Listar Pedidos com filtros",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/pedido?id=1&destino=BH&statusPedido=PENDENTE&prioridade=ALTA",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["pedido"],
+              "query": [
+                { "key": "id", "value": "1" },
+                { "key": "destino", "value": "BH" },
+                { "key": "statusPedido", "value": "PENDENTE" },
+                { "key": "prioridade", "value": "ALTA" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Excluir Pedido",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/pedido/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["pedido", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
