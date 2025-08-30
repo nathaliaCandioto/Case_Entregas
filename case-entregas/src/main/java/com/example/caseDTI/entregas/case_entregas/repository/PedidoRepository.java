@@ -16,9 +16,9 @@ public interface PedidoRepository extends JpaRepository <Pedido, Long>{
     SELECT pd FROM Pedido pd
     WHERE 1=1
     AND (pd.id=:codPedido OR :codePedido IS NULL)
-    AND (pd.destino=:destino OR :destino IS NULL)
-    AND (pd.status=:statusPedido OR :status IS NULL)
-    AND (pd.priodidadePedido=:prioridade OR :prioridade IS NULL)
+    AND (pd.destino =:destino OR :destino IS NULL)
+    AND (pd.statusPedido = :status OR :status IS NULL)
+    AND (pd.prioridadePedido = :prioridade OR :prioridade IS NULL)
     """)
     List<Pedido> findByAttributes (@Param("codPedido") Long id,
                                    @Param("destino") String destino,
