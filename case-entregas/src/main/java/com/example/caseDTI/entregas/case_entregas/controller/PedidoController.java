@@ -19,10 +19,11 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
-    public ResponseEntity<Pedido> insertProduto(@RequestBody Pedido pedido) {
+    public ResponseEntity<Pedido> insertPedido(@RequestBody Pedido pedido) {
         Pedido pedidoCriado = pedidoService.insertPedido(pedido);
         return ResponseEntity.ok(pedidoCriado);
     }
+
 
     @GetMapping
     public ResponseEntity<List<Pedido>> findByAttributes(@RequestParam(value = "id", required = false) Long id,
