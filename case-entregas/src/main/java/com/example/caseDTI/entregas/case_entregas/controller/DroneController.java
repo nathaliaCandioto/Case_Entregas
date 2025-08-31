@@ -38,7 +38,7 @@ public class DroneController {
         try{
             droneService.deleteDrone(codDrone);
         } catch (Exception e){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.noContent().build();

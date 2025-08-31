@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EntregaService {
@@ -51,10 +52,20 @@ public class EntregaService {
     }
 
     public List<Entrega> findByAttributes(Long id, Integer prazo, Long codPedido, Long codDrone) {
+        if((id != null && id <= 0) || (prazo != null && prazo <=0) || (codPedido != null && codPedido <=0) || (codDrone != null && codDrone <=0)){
+
+            throw new IllegalArgumentException("Dados invalidos");
+        }
         return repository.findByAttributes(id, prazo, codPedido, codDrone);
     }
 
     public void deleteEntrega(Long id) {
+        Optional<Entrega> entrega  = repository.findById(id);
+        if(entrega.isEmpty()){
+
+            throw new IllegalArgumentException("Entrega nao encontrada");
+        }
+
         repository.deleteById(id);
     }
 

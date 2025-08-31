@@ -24,22 +24,19 @@ public class DroneService {
     }
 
     public void deleteDrone(Long id) {
-        Optional<Drone> droneIndisponivel = droneRepository.findById(id);
-        if (droneIndisponivel.isEmpty()) {
+        Optional<Drone> drone = droneRepository.findById(id);
+        if (drone.isEmpty()) {
             throw new IllegalArgumentException("Drone nao encontrado");
         }
         droneRepository.deleteById(id);
     }
 
     public List<Drone> listDrone(Long codDrone, Integer autonomiaVoo, StatusDroneEnum statusDrone) {
-        if((codDrone != null && codDrone <= 0) || (autonomiaVoo != null && autonomiaVoo <=0)){
-
+        if ((codDrone != null && codDrone <= 0) || (autonomiaVoo != null && autonomiaVoo <= 0)) {
             throw new IllegalArgumentException("Dados invalidos");
         }
 
         return droneRepository.findByAtributes(codDrone, autonomiaVoo, statusDrone);
-
-
     }
 
 }
