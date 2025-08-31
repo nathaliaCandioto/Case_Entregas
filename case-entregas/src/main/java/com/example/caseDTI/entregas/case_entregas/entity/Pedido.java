@@ -21,7 +21,9 @@ public class Pedido {
     private Double pesoKg;
 
     @Column
-    private String destino;
+    private Integer destinoX;
+    @Column
+    private Integer destinoY;
 
     @Column
     @Enumerated(EnumType.STRING)

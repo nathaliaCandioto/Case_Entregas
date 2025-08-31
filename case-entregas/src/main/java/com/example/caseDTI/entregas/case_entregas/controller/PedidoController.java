@@ -27,11 +27,12 @@ public class PedidoController {
 
     @GetMapping
     public ResponseEntity<List<Pedido>> findByAttributes(@RequestParam(value = "id", required = false) Long id,
-                                                         @RequestParam(value = "destino", required = false) String destino,
+                                                         @RequestParam(value = "destinoX", required = false) Integer destinoX,
+                                                         @RequestParam(value = "destinoY", required = false) Integer destinoY,
                                                          @RequestParam(value = "statusPedido", required = false) StatusPedidoEnum statusPedido,
                                                          @RequestParam(value = "prioridade", required = false) PrioridadePedidoEnum prioridadePedido) {
 
-        List<Pedido> pedidos = pedidoService.listPedido(id, destino, statusPedido, prioridadePedido);
+        List<Pedido> pedidos = pedidoService.listPedido(id, destinoX, destinoY, statusPedido, prioridadePedido);
         if (pedidos.isEmpty())
             return  ResponseEntity.notFound().build();
 
