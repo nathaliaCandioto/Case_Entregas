@@ -23,9 +23,9 @@ public class DroneController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Drone>> listDrone(@RequestParam(value = "codDrone") Long id,
-                                                 @RequestParam(value = "autonomiaVoo") Integer autonomiaVoo,
-                                                 @RequestParam(value = "statusDrone") StatusDroneEnum statusDrone) {
+    public ResponseEntity<List<Drone>> listDrone(@RequestParam(value = "codDrone", required = false) Long id,
+                                                 @RequestParam(value = "autonomiaVoo", required = false) Integer autonomiaVoo,
+                                                 @RequestParam(value = "statusDrone", required = false) StatusDroneEnum statusDrone) {
         List<Drone> drones = droneService.listDrone(id, autonomiaVoo, statusDrone);
         if (drones.isEmpty())
             return ResponseEntity.notFound().build();
@@ -34,8 +34,15 @@ public class DroneController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDrone(Long codDrone){
-        droneService.deleteDrone(codDrone);
+    public ResponseEntity<Void> deleteDrone(Long codDrone){
+        try{
+            droneService.deleteDrone(codDrone);
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.noContent().build();
+
     }
 
 

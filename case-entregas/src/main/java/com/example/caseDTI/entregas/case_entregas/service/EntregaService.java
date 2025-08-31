@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public class EntregaService {
 
-    private Integer origemX=2;
-    private Integer origemY=2;
+    private Integer origemX=0;
+    private Integer origemY=0;
 
     private final EntregaRepository repository;
     private final DroneRepository droneRepository;
