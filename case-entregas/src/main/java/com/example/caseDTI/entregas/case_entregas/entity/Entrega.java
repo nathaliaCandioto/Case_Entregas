@@ -29,4 +29,8 @@ public class Entrega {
     @JoinColumn
     private Drone drone;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private StatusEntregaEnum statusEntrega;
+
 }
