@@ -5,5 +5,4 @@ public enum StatusEntregaEnum {
     EM_TRANSPORTE,
     ENTREGUE,
     CANCELADA
-
 }
