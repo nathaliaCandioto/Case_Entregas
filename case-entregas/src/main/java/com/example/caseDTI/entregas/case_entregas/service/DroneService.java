@@ -14,6 +14,12 @@ public class DroneService {
     private DroneRepository droneRepository;
 
     public Drone insertDrone(Drone drone){
+        if (drone.getAutonomiaVoo() == null || drone.getPesoSuportado() == null || drone.getPesoSuportado() <= 0 || drone.getAutonomiaVoo() <= 0){
+            throw new IllegalArgumentException("Dados invalidos");
+        }
+        drone.setStatusDrone(StatusDroneEnum.DISPONIVEL);
+
+
         return droneRepository.save(drone);
     }
 
@@ -23,6 +29,8 @@ public class DroneService {
 
    public List<Drone> listDrone (Long codDrone,Integer autonomiaVoo,StatusDroneEnum statusDrone){
         return droneRepository.findByAtributes(codDrone,autonomiaVoo,statusDrone);
+
+
 
    }
 }

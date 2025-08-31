@@ -24,4 +24,11 @@ public interface DroneRepository extends JpaRepository <Drone, Long > {
                                  @Param("statusDrone")StatusDroneEnum statusDrone
                                  );
 
+
+    @Query("""
+            SELECT dr FROM Drone dr
+            WHERE dr.pesoSuportado >= :peso AND dr.statusDrone = :statusDrone
+            """)
+    List <Drone> findByPeso (Double peso, StatusDroneEnum statusDrone);
+
 }

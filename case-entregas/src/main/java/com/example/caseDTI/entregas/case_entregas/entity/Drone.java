@@ -19,7 +19,7 @@ public class Drone {
     private Long id;
 
     @Column
-    private Integer pesoSuportado;
+    private Double pesoSuportado;
 
     @Column
     private Integer autonomiaVoo;
