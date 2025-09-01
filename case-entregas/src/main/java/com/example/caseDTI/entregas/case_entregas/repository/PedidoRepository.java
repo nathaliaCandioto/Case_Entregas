@@ -26,5 +26,11 @@ public interface PedidoRepository extends JpaRepository <Pedido, Long>{
                                    @Param("destinoY") Integer destinoY,
                                    @Param("status") StatusPedidoEnum statusPedido,
                                    @Param("prioridade") PrioridadePedidoEnum prioridadePedido);
+    @Query("""
+            SELECT pd FROM Pedido pd
+            WHERE pd.statusPedido = 'PENDENTE'
+            ORDER BY pd.prioridadePedido
+            """)
+    List<Pedido> findPedidosPendentes();
 
 }

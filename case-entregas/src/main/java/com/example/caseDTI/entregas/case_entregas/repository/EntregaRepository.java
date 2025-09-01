@@ -1,8 +1,6 @@
 package com.example.caseDTI.entregas.case_entregas.repository;
 
-import com.example.caseDTI.entregas.case_entregas.entity.Drone;
 import com.example.caseDTI.entregas.case_entregas.entity.Entrega;
-import com.example.caseDTI.entregas.case_entregas.entity.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +21,12 @@ public interface EntregaRepository extends JpaRepository<Entrega, Long> {
                                    @Param("prazo") Integer prazo,
                                    @Param("codPedido") Long pedido,
                                    @Param("codDrone") Long drone);
+
+    @Query("""
+            SELECT e FROM Entrega e
+            WHERE e.statusEntrega = 'PENDENTE'
+            """)
+    List<Entrega> findEntregasPendentes();
+
+
 }

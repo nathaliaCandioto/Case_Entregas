@@ -28,12 +28,29 @@ public class EntregaService {
         this.repository = repository;
     }
 
+    public List<Entrega> entregasPendentes() {
+        return repository.findEntregasPendentes();
+    }
+
+    public void processarEntregas() {
+        List<Pedido> pedidosPendentes = pedidoRepository.findPedidosPendentes();
+        pedidosPendentes.sort((p1, p2) -> Integer.compare(
+                p1.getPrioridadePedido().ordinal(),
+                p2.getPrioridadePedido().ordinal()
+        ));
+
+        for (int i = 0; i < pedidosPendentes.size(); i++) {
+            Pedido pedido = pedidosPendentes.get(i);
+            Entrega entrega = new Entrega();
+            entrega.setPedido(pedido);
+            insertEntrega(entrega);
+        }
+    }
+
     public Entrega insertEntrega (Entrega entrega) {
         entrega.setStatusEntrega(StatusEntregaEnum.PENDENTE);
         List<Drone> drones = droneRepository.findAll();
-        Pedido pedido = pedidoRepository.findById(entrega.getPedido().getId()).get();
-        entrega.setPedido(pedido);
-        Integer distanciaTotal=(pedido.getDestinoX()+entrega.getPedido().getDestinoY())-(origemX+origemY);
+        Integer distanciaTotal=(entrega.getPedido().getDestinoX()+entrega.getPedido().getDestinoY())-(origemX+origemY);
 
         for (int i = 0; i< drones.size(); i++) {
             Drone d = drones.get(i);
@@ -44,11 +61,12 @@ public class EntregaService {
                 entrega.setStatusEntrega(StatusEntregaEnum.EM_TRANSPORTE);
                 entrega.getDrone().setStatusDrone(StatusDroneEnum.EMVOO);
                 entrega.getPedido().setStatusPedido(StatusPedidoEnum.EM_TRANSPORTE);
+                repository.save(entrega);
                 break;
             }
         }
+        return null;
 
-        return repository.save(entrega);
     }
 
     public List<Entrega> findByAttributes(Long id, Integer prazo, Long codPedido, Long codDrone) {

@@ -24,7 +24,6 @@ public class Entrega {
     @JoinColumn
     private Pedido pedido;
 
-
     @ManyToOne
     @JoinColumn
     private Drone drone;

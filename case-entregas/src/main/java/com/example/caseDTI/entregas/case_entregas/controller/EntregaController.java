@@ -1,10 +1,8 @@
 package com.example.caseDTI.entregas.case_entregas.controller;
 
 import com.example.caseDTI.entregas.case_entregas.entity.Entrega;
-import com.example.caseDTI.entregas.case_entregas.repository.EntregaRepository;
 import com.example.caseDTI.entregas.case_entregas.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +20,9 @@ public class EntregaController {
     }
 
     @PostMapping
-    public ResponseEntity<Entrega> insertEntrega(@RequestBody Entrega entrega) {
-        Entrega entregaCriada = service.insertEntrega(entrega);
-        return ResponseEntity.ok(entregaCriada);
+    public ResponseEntity<Void> insertEntrega() {
+        service.processarEntregas();
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping
